@@ -5,7 +5,7 @@ function WhenISearchForAMerchant(shop){
     cy.get('input[type="search"]').should('have.value', shop);
 }
 
-// method to validate the shop directory
+// method to validate the shop directory count
 function ThenIExpectAShopDirectoryCountOf(expectedLength){
     cy.get('[class^=shop-directory-]').not('[class*=shop-directory-module--tag-matches]').should('have.length', expectedLength);
 }
