@@ -20,6 +20,12 @@ context('Store Search Smoke Test', () => {
             ThenIExpectAShopDirectoryCountOf(expectedLength);
         })
     });
+    describe('SideQuest: PBTech should return 1 result', () => {
+        it('I search for PbTech and expect 1 results', (shop = 'PbTech', expectedLength = 1) => {
+            WhenISearchForAMerchant(shop);
+            ThenIExpectAShopDirectoryCountOf(expectedLength);
+        })
+    });
 
     describe('Open Store in new Window', () => {
         it('I click Stirling and expect the store to open in a new window', (shop = 'Stirling') => {
@@ -28,14 +34,8 @@ context('Store Search Smoke Test', () => {
             cy.get('[class^=shop-directory-module--tiles]').not('[class*=shop-directory-module--tag-matches]')
                 .within(($form) => {
                     cy.get('[class*=tile-module--tile]').eq(0).should('have.attr', 'target', '_blank').click();
+                    cy.go('back');
             })
-        })
-    });
-
-    describe('SideQuest: PBTech should return 1 result', () => {
-        it('I search for PbTech and expect 1 results', (shop = 'PbTech', expectedLength = 1) => {
-            WhenISearchForAMerchant(shop);
-            ThenIExpectAShopDirectoryCountOf(expectedLength);
         })
     });
 })
